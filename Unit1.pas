@@ -5,17 +5,26 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ButtonGroup, Vcl.ExtCtrls,
-  Vcl.Imaging.pngimage, Vcl.StdCtrls;
+  Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.ComCtrls;
 
 type
   TForm1 = class(TForm)
     Image1: TImage;
     Label1: TLabel;
     Shape1: TShape;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    Label3: TLabel;
+    TabSheet5: TTabSheet;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    Edit1: TEdit;
     Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    Label2: TLabel;
+    Shape2: TShape;
   private
     { Private declarations }
   public
