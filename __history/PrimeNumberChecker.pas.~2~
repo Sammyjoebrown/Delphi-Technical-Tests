@@ -1,0 +1,12 @@
+unit PrimeNumberChecker;
+
+interface
+
+implementation
+
+function CheckIfPrimeNumber(Input : Double): Boolean;
+
+begin;
+end;
+
+end.

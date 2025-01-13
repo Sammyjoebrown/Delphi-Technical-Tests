@@ -1,0 +1,9 @@
+unit PalindromeChecker;
+
+interface
+
+implementation
+
+function CheckIfPalindrome(Input : String): Boolean;
+
+end.

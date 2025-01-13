@@ -1,0 +1,12 @@
+unit TextToSpeech;
+
+interface
+
+implementation
+
+function ConvertTextToSpeech(Input : String; Format : String): Boolean;
+
+begin;
+end;
+
+end.

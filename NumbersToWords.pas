@@ -18,12 +18,14 @@ const
 var
   Output: String;
 
-  function ProcessTriplet(Triplet: String): String;
+  function ProcessTriplet(Triplet: String; AddAnd: Boolean): String;
   var
     TripletLength, Num: Integer;
   begin
     Result := '';
     TripletLength := Length(Triplet);
+
+    // Handle hundreds
     if TripletLength = 3 then
     begin
       Num := StrToInt(Triplet[1]);
@@ -32,8 +34,12 @@ var
       Triplet := Copy(Triplet, 2, 2);
     end;
 
+    // Handle tens and teens
     if Length(Triplet) = 2 then
     begin
+      if (Result <> '') and AddAnd then
+        Result := Result + 'and ';
+
       if Triplet[1] = '1' then
       begin
         Result := Result + MediumTeenNumbers[StrToInt(Triplet)] + ' ';
@@ -46,6 +52,7 @@ var
       end;
     end;
 
+    // Handle ones
     if Length(Triplet) = 1 then
     begin
       Num := StrToInt(Triplet);
@@ -104,7 +111,7 @@ begin
     begin
       if InputBeforePointArray[i] <> '' then
       begin
-        Output := Output + ProcessTriplet(InputBeforePointArray[i]);
+        Output := Output + ProcessTriplet(InputBeforePointArray[i], i = High(InputBeforePointArray));
         if (High(InputBeforePointArray) - i > 0) and (High(InputBeforePointArray) - i < Length(LargeNumbers)) then
           Output := Output + ' ' + LargeNumbers[High(InputBeforePointArray) - i] + ' ';
       end;

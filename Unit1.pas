@@ -56,6 +56,9 @@ implementation
 
 uses
   NumbersToWords;
+  PalindromeChecker;
+  PrimeNumberChecker;
+  TextToSpeech;
 
 {$R *.dfm}
 
@@ -68,10 +71,14 @@ OutputText: String;
 
 begin
 InputNumber := StrToInt(Edit1.Text);
-OutputText := ConvertNumbersToWords(FloatToStr(InputNumber), 'Number');
-Label1.Caption := OutputText;
 
+if RadioButton1.checked then
+  ConversionType :='Dollar'
+else
+  ConversionType := 'Number';
 
+OutputText := ConvertNumbersToWords(FloatToStr(InputNumber), ConversionType);
+Label2.Caption := OutputText;
 end;
 
 end.
