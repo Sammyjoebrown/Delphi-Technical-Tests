@@ -1,0 +1,9 @@
+unit NumbersToWords;
+
+interface
+function NumberToWords(Number: Integer): String;
+
+
+implementation
+
+end.

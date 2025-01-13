@@ -42,6 +42,7 @@ type
     RadioButton3: TRadioButton;
     RadioButton4: TRadioButton;
     Label9: TLabel;
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,6 +54,24 @@ var
 
 implementation
 
+uses
+  NumbersToWords;
+
 {$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+
+var
+InputNumber: Double;
+ConversionType: String;
+OutputText: String;
+
+begin
+InputNumber := StrToInt(Edit1.Text);
+OutputText := ConvertNumbersToWords(FloatToStr(InputNumber), 'Number');
+Label1.Caption := OutputText;
+
+
+end;
 
 end.
