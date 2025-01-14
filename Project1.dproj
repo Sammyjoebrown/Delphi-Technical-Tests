@@ -127,6 +127,10 @@
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="NumbersToWords.pas"/>
+        <DCCReference Include="PalindromeChecker.pas"/>
+        <DCCReference Include="PrimeNumberChecker.pas"/>
+        <DCCReference Include="TextToSpeech.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

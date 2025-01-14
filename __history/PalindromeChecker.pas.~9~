@@ -1,0 +1,29 @@
+unit PalindromeChecker;
+
+interface
+
+function CheckIfPalindrome(Input: String): Boolean;
+
+implementation
+
+uses
+  System.SysUtils;
+
+function CheckIfPalindrome(Input: String): Boolean;
+var
+  ReversedInput: String;
+  ProcessedInput: String;
+  i: Integer;
+begin
+  ReversedInput := '';
+  ProcessedInput := StringReplace(Input, ' ', '', [rfReplaceAll]);
+  // Reverse the input string
+  for i := Length(Input) downto 1 do
+    ReversedInput := ReversedInput + Input[i];
+
+  // Compare the original string with the reversed string
+  Result := SameText(Input, ReversedInput); // Case-insensitive comparison
+end;
+
+end.
+

@@ -43,6 +43,9 @@ type
     RadioButton4: TRadioButton;
     Label9: TLabel;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,15 +58,12 @@ var
 implementation
 
 uses
-  NumbersToWords;
-  PalindromeChecker;
-  PrimeNumberChecker;
-  TextToSpeech;
+  NumbersToWords, PalindromeChecker, PrimeNumberChecker, TextToSpeech;
 
 {$R *.dfm}
 
+// Numbers to Words App
 procedure TForm1.Button1Click(Sender: TObject);
-
 var
 InputNumber: Double;
 ConversionType: String;
@@ -81,4 +81,50 @@ OutputText := ConvertNumbersToWords(FloatToStr(InputNumber), ConversionType);
 Label2.Caption := OutputText;
 end;
 
+// Palindrome Checker
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  InputText: String;
+  IsPalindrome: Boolean;
+begin
+  InputText := Edit2.Text;
+  IsPalindrome := CheckIfPalindrome(InputText);
+
+  if IsPalindrome then
+    Label4.Caption := 'Palindrome'
+  else
+    Label4.Caption := 'Not a Palindrome';
+end;
+
+// Prime Number Checker
+procedure TForm1.Button3Click(Sender: TObject);
+var
+  InputNumber: Integer;
+  IsPrime: Boolean;
+begin
+  InputNumber := StrToInt(Edit3.Text);
+  IsPrime := CheckIfPrimeNumber(InputNumber);
+
+  if IsPrime then
+    Label5.Caption := 'Prime Number'
+  else
+    Label5.Caption := 'Not a Prime Number';
+end;
+
+// Text to Speech
+procedure TForm1.Button4Click(Sender: TObject);
+var
+  InputText: String;
+  Success: Boolean;
+begin
+  InputText := Edit4.Text;
+  Success := ConvertTextToSpeech(InputText, 'Default');
+
+  if Success then
+    Label6.Caption := 'Speech Played'
+  else
+    Label6.Caption := 'Failed to Play Speech';
+end;
+
+// Prime Number Checker
 end.
