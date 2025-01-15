@@ -1,0 +1,153 @@
+unit NumbersToWords;
+
+interface
+
+uses
+  System.SysUtils, Math;
+
+function ConvertNumbersToWords(Input: String; ConversionType: String): String;
+
+implementation
+
+function ConvertNumbersToWords(Input: String; ConversionType: String): String;
+const
+  LargeNumbers: array[0..9] of String = ('hundred', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion');
+  MediumTyNumbers: array[2..9] of String = ('twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety');
+  MediumTeenNumbers: array[0..9] of String = ('ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen');
+  SmallNumbers: array[1..9] of String = ('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine');
+var
+  Output: String;
+
+  function ProcessTriplet(Triplet: String; AddAnd: Boolean): String;
+  var
+    TripletLength, Num: Integer;
+  begin
+    Result := '';
+    TripletLength := Length(Triplet);
+
+    // Handle hundreds
+    if TripletLength = 3 then
+    begin
+      Num := StrToInt(Triplet[1]);
+      if Num > 0 then
+        Result := Result + SmallNumbers[Num] + ' ' + LargeNumbers[0] + ' ';
+      Triplet := Copy(Triplet, 2, 2);
+    end;
+
+    // Handle tens and teens
+    if Length(Triplet) = 2 then
+    begin
+      if (Result <> '') and AddAnd then
+        Result := Result + 'and ';
+
+      if Triplet[1] = '1' then
+      begin
+        Result := Result + MediumTeenNumbers[StrToInt(Triplet[2])] + ' ';
+        Exit;
+      end
+      else if Triplet[1] >= '2' then
+      begin
+        Result := Result + MediumTyNumbers[StrToInt(Triplet[1])] + ' ';
+        Triplet := Copy(Triplet, 2, 1);
+      end;
+    end;
+
+    // Handle ones
+    if Length(Triplet) = 1 then
+    begin
+      Num := StrToInt(Triplet);
+      if Num > 0 then
+        Result := Result + SmallNumbers[Num] + ' ';
+    end;
+
+    Result := Trim(Result);
+  end;
+
+  function SplitNumber(Input: String): TArray<String>;
+  var
+    InputLength, StartIndex: Integer;
+  begin
+    InputLength := Length(Input);
+    SetLength(Result, Ceil(InputLength / 3));
+    StartIndex := InputLength;
+
+    for var i := High(Result) downto Low(Result) do
+    begin
+      Result[i] := Copy(Input, Max(1, StartIndex - 2), Min(3, StartIndex));
+      Dec(StartIndex, 3);
+    end;
+  end;
+
+  function ProcessDecimal(DecimalPart: String): String;
+  var
+    Num: Integer;
+  begin
+    Result := '';
+    Num := StrToInt(DecimalPart);
+
+    // Handle tens and teens
+    if (Num >= 10) and (Num < 20) then
+      Result := MediumTeenNumbers[Num - 10]
+    else
+    begin
+      if Num div 10 > 1 then
+        Result := MediumTyNumbers[Num div 10] + ' ';
+      if Num mod 10 > 0 then
+        Result := Result + SmallNumbers[Num mod 10];
+    end;
+
+    Result := Trim(Result);
+  end;
+
+var
+  InputProcessing: Extended;
+  InputBeforePoint, InputAfterPoint: String;
+  InputBeforePointArray: TArray<String>;
+begin
+  Output := '';
+  if TryStrToFloat(Input, InputProcessing) then
+  begin
+    InputBeforePoint := FloatToStrF(Int(InputProcessing), ffFixed, 18, 0);
+    if Pos('.', Input) > 0 then
+      InputAfterPoint := Copy(Input, Pos('.', Input) + 1, MaxInt)
+    else
+      InputAfterPoint := '';
+
+    InputBeforePointArray := SplitNumber(InputBeforePoint);
+
+    for var i := Low(InputBeforePointArray) to High(InputBeforePointArray) do
+    begin
+      if InputBeforePointArray[i] <> '' then
+      begin
+        Output := Output + ProcessTriplet(InputBeforePointArray[i], i = High(InputBeforePointArray));
+        if (High(InputBeforePointArray) - i > 0) and (High(InputBeforePointArray) - i < Length(LargeNumbers)) then
+          Output := Output + ' ' + LargeNumbers[High(InputBeforePointArray) - i] + ' ';
+      end;
+    end;
+
+    if ConversionType = 'Dollar' then
+    begin
+      if InputProcessing = 1 then
+        Output := Output + ' Dollar'
+      else
+        Output := Output + ' Dollars';
+    end;
+
+    if InputAfterPoint <> '' then
+    begin
+      if ConversionType = 'Dollar' then
+        Output := Output + ' and ' + ProcessDecimal(InputAfterPoint) + ' Cents'
+      else
+        Output := Output + ' point ' + ProcessDecimal(InputAfterPoint);
+    end;
+
+    Output := Trim(Output);
+  end
+  else
+    Output := 'Invalid Input';
+
+  Result := Output;
+end;
+
+end.
+

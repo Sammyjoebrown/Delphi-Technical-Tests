@@ -1,0 +1,40 @@
+unit PrimeNumberChecker;
+
+interface
+
+function CheckIfPrimeNumber(Input: Integer): Boolean;
+
+implementation
+
+uses
+  Math; // Required for Sqrt
+
+function CheckIfPrimeNumber(Input: Integer): Boolean;
+var
+  i: Integer;
+  Limit: Integer;
+begin
+  if Input <= 1 then
+  begin
+    Result := False; // Numbers <= 1 are not prime
+    Exit;
+  end;
+
+  // Calculate the limit (sqrt of Input)
+  Limit := Trunc(Sqrt(Double(Input))); // Explicit cast to Double
+
+  // Check divisors from 2 to Limit
+  for i := 2 to Limit do
+  begin
+    if Input mod i = 0 then
+    begin
+      Result := False; // Divisible, not prime
+      Exit;
+    end;
+  end;
+
+  Result := True; // No divisors found, it is prime
+end;
+
+end.
+

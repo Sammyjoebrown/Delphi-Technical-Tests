@@ -38,14 +38,12 @@ type
     Label8: TLabel;
     Edit4: TEdit;
     Button4: TButton;
-    Button5: TButton;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
     Label9: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    //procedure PageControl1Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -70,7 +68,7 @@ ConversionType: String;
 OutputText: String;
 
 begin
-InputNumber := StrToInt(Edit1.Text);
+InputNumber := StrToFloat(Edit1.Text);
 
 if RadioButton1.checked then
   ConversionType :='Dollar'
@@ -101,14 +99,27 @@ procedure TForm1.Button3Click(Sender: TObject);
 var
   InputNumber: Integer;
   IsPrime: Boolean;
+  InputText: String;
 begin
-  InputNumber := StrToInt(Edit3.Text);
-  IsPrime := CheckIfPrimeNumber(InputNumber);
+  try
+    InputText := Trim(Edit3.Text);
+    if InputText = '' then
+      raise Exception.Create('Input cannot be empty.');
 
-  if IsPrime then
-    Label5.Caption := 'Prime Number'
-  else
-    Label5.Caption := 'Not a Prime Number';
+    InputNumber := StrToInt(InputText);
+
+    IsPrime := CheckIfPrimeNumber(InputNumber);
+
+    if IsPrime then
+      Label7.Caption := IntToStr(InputNumber) + ' is a prime number'
+    else
+      Label7.Caption := IntToStr(InputNumber) + ' is not a prime number';
+  except
+    on E: EConvertError do
+      Label7.Caption := 'Invalid input. Please enter a valid integer.';
+    on E: Exception do
+      Label7.Caption := E.Message;
+  end;
 end;
 
 // Text to Speech
@@ -116,15 +127,22 @@ procedure TForm1.Button4Click(Sender: TObject);
 var
   InputText: String;
   Success: Boolean;
+  StatusMessage: String;
 begin
   InputText := Edit4.Text;
-  Success := ConvertTextToSpeech(InputText, 'Default');
+
+  if InputText = '' then
+  begin
+    Label6.Caption := 'Please enter text to convert.';
+    Exit;
+  end;
+
+  Success := ConvertTextToSpeech(InputText, StatusMessage);
 
   if Success then
-    Label6.Caption := 'Speech Played'
+    Label6.Caption := 'Text converted to speech and saved!'
   else
-    Label6.Caption := 'Failed to Play Speech';
+    Label6.Caption := 'Failed to convert text to speech.';
 end;
 
-// Prime Number Checker
 end.

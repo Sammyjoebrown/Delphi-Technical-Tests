@@ -6,27 +6,32 @@ function CheckIfPrimeNumber(Input: Integer): Boolean;
 
 implementation
 
+uses
+  Math;
+
 function CheckIfPrimeNumber(Input: Integer): Boolean;
 var
   i: Integer;
+  Limit: Integer;
 begin
   if Input <= 1 then
   begin
-    Result := False; // Numbers <= 1 are not prime
+    Result := False;
     Exit;
   end;
 
-  // Check divisors from 2 to sqrt(Input)
-  for i := 2 to Trunc(Sqrt(Input)) do
+  Limit := Trunc(Sqrt(Double(Input)));
+
+  for i := 2 to Limit do
   begin
     if Input mod i = 0 then
     begin
-      Result := False; // Divisible, not prime
+      Result := False;
       Exit;
     end;
   end;
 
-  Result := True; // No divisors found, it is prime
+  Result := True;
 end;
 
 end.

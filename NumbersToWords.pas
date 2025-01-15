@@ -13,7 +13,7 @@ function ConvertNumbersToWords(Input: String; ConversionType: String): String;
 const
   LargeNumbers: array[0..9] of String = ('hundred', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion');
   MediumTyNumbers: array[2..9] of String = ('twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety');
-  MediumTeenNumbers: array[10..19] of String = ('ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen');
+  MediumTeenNumbers: array[0..9] of String = ('ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen');
   SmallNumbers: array[1..9] of String = ('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine');
 var
   Output: String;
@@ -42,7 +42,7 @@ var
 
       if Triplet[1] = '1' then
       begin
-        Result := Result + MediumTeenNumbers[StrToInt(Triplet)] + ' ';
+        Result := Result + MediumTeenNumbers[StrToInt(Triplet[2])] + ' ';
         Exit;
       end
       else if Triplet[1] >= '2' then
@@ -79,15 +79,23 @@ var
   end;
 
   function ProcessDecimal(DecimalPart: String): String;
+  var
+    Num: Integer;
   begin
-    Result := 'point ';
-    for var c in DecimalPart do
+    Result := '';
+    Num := StrToInt(DecimalPart);
+
+    // Handle tens and teens
+    if (Num >= 10) and (Num < 20) then
+      Result := MediumTeenNumbers[Num - 10]
+    else
     begin
-      if c >= '1' then
-        Result := Result + SmallNumbers[StrToInt(c)] + ' '
-      else
-        Result := Result + 'zero ';
+      if Num div 10 > 1 then
+        Result := MediumTyNumbers[Num div 10] + ' ';
+      if Num mod 10 > 0 then
+        Result := Result + SmallNumbers[Num mod 10];
     end;
+
     Result := Trim(Result);
   end;
 
@@ -120,17 +128,17 @@ begin
     if ConversionType = 'Dollar' then
     begin
       if InputProcessing = 1 then
-        Output := Output + ' Dollar'
+        Output := Output + ' dollar'
       else
-        Output := Output + ' Dollars';
+        Output := Output + ' dollars';
     end;
 
     if InputAfterPoint <> '' then
     begin
       if ConversionType = 'Dollar' then
-        Output := Output + ' and ' + ProcessDecimal(InputAfterPoint) + ' Cents'
+        Output := Output + ' and ' + ProcessDecimal(InputAfterPoint) + ' cents'
       else
-        Output := Output + ' ' + ProcessDecimal(InputAfterPoint);
+        Output := Output + ' point ' + ProcessDecimal(InputAfterPoint);
     end;
 
     Output := Trim(Output);

@@ -1,0 +1,54 @@
+unit TextToSpeech;
+
+interface
+
+function ConvertTextToSpeech(Input: String): Boolean;
+function PlayAudio: Boolean;
+
+implementation
+
+uses
+  ComObj, System.SysUtils, MMSystem; // MMSystem is for playing the audio
+
+const
+  TempAudioFile = 'TempAudio.wav'; // Temporary file to store audio
+
+function ConvertTextToSpeech(Input: String): Boolean;
+var
+  Voice: Variant;
+  FileStream: Variant;
+begin
+  try
+    Voice := CreateOleObject('SAPI.SpVoice'); // Create SAPI Voice object
+    FileStream := CreateOleObject('SAPI.SpFileStream'); // Create file stream for saving audio
+
+    // Open the temporary file to save the audio
+    FileStream.Open(TempAudioFile, 3, False); // Mode 3 = Write
+
+    // Set the audio output to the file stream
+    Voice.AudioOutputStream := FileStream;
+    Voice.Speak(Input); // Speak the input text and save to file
+
+    // Close the file stream
+    FileStream.Close;
+    Result := True; // Success
+  except
+    Result := False; // Failure
+  end;
+end;
+
+function PlayAudio: Boolean;
+begin
+  try
+    // Play the saved audio file
+    if FileExists(TempAudioFile) then
+      Result := PlaySound(PChar(TempAudioFile), 0, SND_ASYNC or SND_FILENAME)
+    else
+      Result := False; // File doesn't exist
+  except
+    Result := False; // Failure
+  end;
+end;
+
+end.
+

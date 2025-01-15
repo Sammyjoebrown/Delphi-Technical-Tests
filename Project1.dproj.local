@@ -3,18 +3,18 @@
 	<Transactions>
     <Transaction>2025/01/13 19:37:42.000.534,=C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2025/01/13 19:38:33.000.963,=C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2025/01/13 19:38:51.000.216,C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit1.dfm</Transaction>
-    <Transaction>2025/01/13 19:38:51.000.216,C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit1.pas</Transaction>
+    <Transaction>2025/01/13 19:38:51.000.216,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit1.pas=C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/01/13 19:38:51.000.216,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit1.dfm=C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>2025/01/13 21:24:57.000.736,=C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>2025/01/13 21:25:30.000.758,=C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2025/01/13 23:58:40.000.216,C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Project1.dproj</Transaction>
-    <Transaction>2025/01/14 01:20:37.141,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
-    <Transaction>2025/01/14 01:20:54.013,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\NumbersToWords.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
-    <Transaction>2025/01/14 02:58:53.330,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
-    <Transaction>2025/01/14 02:59:16.402,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\PalindromeChecker.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
-    <Transaction>2025/01/14 02:59:30.496,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
-    <Transaction>2025/01/14 02:59:48.248,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\PrimeNumberChecker.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
-    <Transaction>2025/01/14 03:00:01.252,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
-    <Transaction>2025/01/14 03:00:15.099,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\TextToSpeech.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
+    <Transaction>2025/01/13 23:58:40.000.216,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Project1.dproj=C:\Users\Sammy B\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2025/01/14 01:20:37.000.141,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
+    <Transaction>2025/01/14 01:20:54.000.013,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\NumbersToWords.pas</Transaction>
+    <Transaction>2025/01/14 02:58:53.000.330,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
+    <Transaction>2025/01/14 02:59:16.000.402,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\PalindromeChecker.pas</Transaction>
+    <Transaction>2025/01/14 02:59:30.000.496,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
+    <Transaction>2025/01/14 02:59:48.000.248,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\PrimeNumberChecker.pas</Transaction>
+    <Transaction>2025/01/14 03:00:01.000.252,=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas</Transaction>
+    <Transaction>2025/01/14 03:00:15.000.099,C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\Unit2.pas=C:\Users\Sammy B\Desktop\Medical Objects\Delphi Learning\Delphi Technical Tests\TextToSpeech.pas</Transaction>
   </Transactions>
 </BorlandProject>

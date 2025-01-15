@@ -16,14 +16,21 @@ var
   i: Integer;
 begin
   ReversedInput := '';
-  ProcessedInput := StringReplace(Input, ' ', '', [rfReplaceAll]);
 
-  for i := Length(Input) downto 1 do  // Reverse the input string
-    ReversedInput := ReversedInput + Input[i];
+  // Preprocess the input: remove spaces and non-alphanumeric characters, and convert to lowercase
+  ProcessedInput := LowerCase(Input);
+  ProcessedInput := StringReplace(ProcessedInput, ' ', '', [rfReplaceAll]); // Remove spaces
+  ProcessedInput := StringReplace(ProcessedInput, '.', '', [rfReplaceAll]); // Remove periods
+  ProcessedInput := StringReplace(ProcessedInput, ',', '', [rfReplaceAll]); // Remove commas
+  ProcessedInput := StringReplace(ProcessedInput, '-', '', [rfReplaceAll]); // Remove dashes
+  ProcessedInput := StringReplace(ProcessedInput, '''', '', [rfReplaceAll]); // Remove apostrophes
 
-  // Compare the original string with the reversed string (Case Insensitive)
-  Result := SameText(Input, ReversedInput);
+  // Reverse the processed input string
+  for i := Length(ProcessedInput) downto 1 do
+    ReversedInput := ReversedInput + ProcessedInput[i];
 
+  // Compare the processed string with the reversed string (case insensitive by design)
+  Result := ProcessedInput = ReversedInput;
 end;
 
 end.
